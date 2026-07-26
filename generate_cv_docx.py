@@ -111,7 +111,7 @@ def build_cv(output_path: str):
     )
     add_text(
         doc,
-        "Dispatcher | طالب علوم حاسب",
+        "Dispatcher",
         size=12,
         bold=True,
         color=INK,
@@ -131,7 +131,7 @@ def build_cv(output_path: str):
     add_heading_ar(doc, "نبذة")
     add_text(
         doc,
-        "شغال Dispatcher في شركات توصيل، وبطالب علوم حاسب سنة تالتة. متعود أوزع أوردرات، أتابع المناديب، وأحل مشاكل الشيفت بسرعة.",
+        "شغال Dispatcher في شركات توصيل. متعود أوزع أوردرات، أتابع المناديب، وأحل مشاكل الشيفت بسرعة.",
         size=11,
         space_after=6,
     )
@@ -157,8 +157,8 @@ def build_cv(output_path: str):
         add_bullet(doc, item)
 
     add_heading_ar(doc, "التعليم")
-    add_text(doc, "علوم حاسب — المعهد العالي بالتجمع الخامس", size=12, bold=True, space_after=1)
-    add_text(doc, "سنة تالتة | متوقع التخرج 2027", size=10, color=MUTED, space_after=6)
+    add_text(doc, "بكالوريوس علوم حاسب — المعهد العالي بالتجمع الخامس", size=12, bold=True, space_after=1)
+    add_text(doc, "متوقع التخرج 2027", size=10, color=MUTED, space_after=6)
 
     add_heading_ar(doc, "المهارات")
     for item in [

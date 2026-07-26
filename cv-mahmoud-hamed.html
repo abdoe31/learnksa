@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>السيرة الذاتية — محمود محمد عبدالفتاح حامد</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #1a2332;
+      --ink-soft: #3d4a5c;
+      --muted: #5c6b7a;
+      --line: #d8dee6;
+      --accent: #0b4f6c;
+      --accent-soft: #e8f1f5;
+      --paper: #f7f9fb;
+      --white: #ffffff;
+      --sidebar: #0b4f6c;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "IBM Plex Sans Arabic", "Cairo", sans-serif;
+      background:
+        radial-gradient(ellipse at 10% 0%, #dce8ef 0%, transparent 45%),
+        radial-gradient(ellipse at 90% 100%, #e8eef3 0%, transparent 40%),
+        var(--paper);
+      color: var(--ink);
+      line-height: 1.7;
+      min-height: 100vh;
+      padding: 32px 16px;
+    }
+
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--white);
+      box-shadow: 0 12px 40px rgba(26, 35, 50, 0.08);
+      overflow: hidden;
+    }
+
+    .hero {
+      background:
+        linear-gradient(135deg, #0b4f6c 0%, #0e6a8f 55%, #1482a8 100%);
+      color: #fff;
+      padding: 40px 48px 36px;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(120deg, transparent 40%, rgba(255, 255, 255, 0.06) 100%);
+      pointer-events: none;
+    }
+
+    .name {
+      font-family: "Cairo", sans-serif;
+      font-size: 2.15rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+
+    .title {
+      font-size: 1.05rem;
+      font-weight: 500;
+      opacity: 0.95;
+      margin-bottom: 22px;
+    }
+
+    .contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 22px;
+      font-size: 0.95rem;
+    }
+
+    .contacts span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.96;
+    }
+
+    .contacts a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1.7fr 1fr;
+      gap: 0;
+    }
+
+    .main {
+      padding: 36px 40px 40px 28px;
+    }
+
+    .side {
+      background: var(--accent-soft);
+      padding: 36px 28px 40px 32px;
+      border-right: 1px solid var(--line);
+    }
+
+    section + section {
+      margin-top: 28px;
+    }
+
+    .section-title {
+      font-family: "Cairo", sans-serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+      min-width: 140px;
+    }
+
+    .summary {
+      color: var(--ink-soft);
+      font-size: 0.98rem;
+      text-align: justify;
+    }
+
+    .job {
+      margin-bottom: 22px;
+    }
+
+    .job:last-child {
+      margin-bottom: 0;
+    }
+
+    .job-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 6px 16px;
+      margin-bottom: 4px;
+    }
+
+    .job-role {
+      font-weight: 700;
+      font-size: 1.02rem;
+      color: var(--ink);
+    }
+
+    .job-company {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.98rem;
+      margin-bottom: 4px;
+    }
+
+    .job-date {
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .job-desc {
+      color: var(--ink-soft);
+      font-size: 0.93rem;
+      margin: 8px 0 10px;
+    }
+
+    ul {
+      padding-right: 18px;
+      color: var(--ink-soft);
+      font-size: 0.93rem;
+    }
+
+    li + li {
+      margin-top: 6px;
+    }
+
+    .edu-item .job-role {
+      margin-bottom: 2px;
+    }
+
+    .edu-meta {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 8px;
+    }
+
+    .side-block + .side-block {
+      margin-top: 26px;
+    }
+
+    .side .section-title {
+      font-size: 1.05rem;
+      min-width: 0;
+      width: 100%;
+    }
+
+    .chip-list,
+    .plain-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .chip-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip-list li {
+      background: var(--white);
+      border: 1px solid #c5d4de;
+      color: var(--ink);
+      padding: 6px 12px;
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+
+    .plain-list li {
+      position: relative;
+      padding-right: 14px;
+      font-size: 0.92rem;
+      color: var(--ink-soft);
+      margin-top: 8px;
+    }
+
+    .plain-list li::before {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 0.7em;
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    .personal-grid {
+      display: grid;
+      gap: 8px;
+      font-size: 0.92rem;
+      color: var(--ink-soft);
+    }
+
+    .personal-grid div {
+      display: flex;
+      gap: 8px;
+    }
+
+    .personal-grid strong {
+      color: var(--ink);
+      font-weight: 600;
+      min-width: 72px;
+    }
+
+    .actions {
+      max-width: 900px;
+      margin: 18px auto 0;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .actions button {
+      font-family: inherit;
+      border: none;
+      background: var(--accent);
+      color: #fff;
+      padding: 10px 18px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .actions button:hover {
+      background: #093f56;
+    }
+
+    @media (max-width: 760px) {
+      body {
+        padding: 0;
+      }
+
+      .hero,
+      .main,
+      .side {
+        padding: 28px 22px;
+      }
+
+      .name {
+        font-size: 1.7rem;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .side {
+        border-right: none;
+        border-top: 1px solid var(--line);
+      }
+
+      .actions {
+        padding: 0 16px 24px;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+      }
+
+      .page {
+        box-shadow: none;
+        max-width: none;
+      }
+
+      .actions {
+        display: none;
+      }
+
+      .side {
+        background: #f3f7f9 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .hero {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      a {
+        text-decoration: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <h1 class="name">محمود محمد عبدالفتاح حامد</h1>
+      <p class="title">منسّق عمليات التوصيل (Dispatcher) | طالب علوم حاسب — متوقع التخرج 2027</p>
+      <div class="contacts">
+        <span>📞 <a href="tel:+201102600149">01102600149</a></span>
+        <span>✉️ <a href="mailto:hhuumahmoud@gmail.com">hhuumahmoud@gmail.com</a></span>
+        <span>📍 القاهرة، مصر</span>
+      </div>
+    </header>
+
+    <div class="layout">
+      <main class="main">
+        <section>
+          <h2 class="section-title">الملف المهني</h2>
+          <p class="summary">
+            منسّق عمليات توصيل بخبرة عملية في بيئات التجارة السريعة والتوصيل عند الطلب، مع قدرة واضحة على إدارة الطلبات في الوقت الفعلي، والتنسيق بين فرق التوصيل والدعم والعملاء، والمتابعة الدقيقة لمؤشرات الأداء. أجمع بين مهارات التنظيم والعمل تحت الضغط وبين خلفية أكاديمية في علوم الحاسب، وأسعى للانضمام إلى مؤسسة كبرى تتيح فرص تطور مهني في مجالات العمليات، خدمة العملاء، أو دعم الأنظمة التشغيلية.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="section-title">الخبرة الوظيفية</h2>
+
+          <article class="job">
+            <div class="job-head">
+              <div class="job-role">منسّق عمليات التوصيل (Dispatcher)</div>
+              <div class="job-date">يناير 2026 — يونيو 2026</div>
+            </div>
+            <div class="job-company">Breadfast</div>
+            <p class="job-desc">
+              العمل ضمن فريق العمليات لضمان تدفق الطلبات بسلاسة عبر تطبيق التوصيل السريع، مع التركيز على سرعة الاستجابة وجودة التنفيذ ودقة المتابعة.
+            </p>
+            <ul>
+              <li>استقبال الطلبات الواردة وتوزيعها على مندوبي التوصيل وفق المناطق والأولوية وكفاءة التغطية المتاحة.</li>
+              <li>متابعة حالة الطلبات لحظة بلحظة والتدخل السريع عند التأخير أو إعادة التوجيه أو حالات الذروة.</li>
+              <li>التنسيق المستمر مع فرق الدعم والتشغيل لمعالجة المشكلات التشغيلية وتقليل زمن الاستجابة.</li>
+              <li>متابعة مؤشرات الأداء الأساسية مثل زمن التوصيل، نسبة الإنجاز، وكفاءة توزيع الطلبات.</li>
+              <li>التعامل الاحترافي مع الملاحظات الميدانية ورفع التقارير اليومية لدعم اتخاذ القرار التشغيلي.</li>
+            </ul>
+          </article>
+
+          <article class="job">
+            <div class="job-head">
+              <div class="job-role">منسّق عمليات التوصيل (Dispatcher)</div>
+              <div class="job-date">2024 — 2025</div>
+            </div>
+            <div class="job-company">InstaShop</div>
+            <p class="job-desc">
+              خبرة لمدة عام في بيئة توصيل سريعة الإيقاع، مع مسؤولية مباشرة عن تنظيم حركة المندوبين وضمان التزام الطلبات بالجداول الزمنية المتفق عليها.
+            </p>
+            <ul>
+              <li>إدارة وتنظيم جداول التوصيل اليومية وتوزيع المهام بما يحقق أفضل استفادة من الموارد المتاحة.</li>
+              <li>متابعة أداء المناديب ميدانيًا ودعمهم في حل المشكلات اللوجستية أثناء تنفيذ الطلبات.</li>
+              <li>التواصل الفعّال مع العملاء عند الحاجة لتوضيح حالة الطلب أو ترتيب حلول بديلة عند الطوارئ.</li>
+              <li>المساهمة في تحسين انسيابية العمليات اليومية من خلال الالتزام بالإجراءات ومعايير الجودة.</li>
+              <li>العمل ضمن فريق متعدد المهام مع الحفاظ على الدقة والهدوء خلال فترات الضغط العالي.</li>
+            </ul>
+          </article>
+        </section>
+
+        <section>
+          <h2 class="section-title">التعليم</h2>
+          <article class="edu-item job">
+            <div class="job-head">
+              <div class="job-role">بكالوريوس علوم الحاسب</div>
+              <div class="job-date">متوقع التخرج: 2027</div>
+            </div>
+            <div class="job-company">المعهد العالي بالتجمع الخامس</div>
+            <p class="edu-meta">السنة الدراسية الحالية: السنة الثالثة</p>
+            <ul>
+              <li>دراسة تخصصات أساسية في علوم الحاسب تشمل البرمجة، قواعد البيانات، الشبكات، ونظم المعلومات.</li>
+              <li>تنمية مهارات التفكير التحليلي وحل المشكلات من خلال المقررات العملية والمشروعات الدراسية.</li>
+              <li>الجمع بين الدراسة الأكاديمية والخبرة العملية في مجال العمليات والتوصيل لتعزيز الجاهزية لسوق العمل.</li>
+            </ul>
+          </article>
+        </section>
+      </main>
+
+      <aside class="side">
+        <div class="side-block">
+          <h2 class="section-title">المهارات المهنية</h2>
+          <ul class="chip-list">
+            <li>إدارة عمليات التوصيل</li>
+            <li>توزيع الطلبات</li>
+            <li>المتابعة اللحظية</li>
+            <li>خدمة العملاء</li>
+            <li>العمل تحت الضغط</li>
+            <li>التنسيق بين الفرق</li>
+            <li>إعداد التقارير اليومية</li>
+            <li>حل المشكلات التشغيلية</li>
+          </ul>
+        </div>
+
+        <div class="side-block">
+          <h2 class="section-title">المهارات التقنية</h2>
+          <ul class="chip-list">
+            <li>أنظمة إدارة الطلبات</li>
+            <li>تطبيقات التوصيل</li>
+            <li>Microsoft Office</li>
+            <li>Excel</li>
+            <li>أساسيات علوم الحاسب</li>
+            <li>التعامل مع البيانات</li>
+          </ul>
+        </div>
+
+        <div class="side-block">
+          <h2 class="section-title">الكفاءات الشخصية</h2>
+          <ul class="plain-list">
+            <li>انضباط عالٍ والتزام بالمواعيد</li>
+            <li>تواصل واضح وفعّال</li>
+            <li>قدرة على اتخاذ قرارات سريعة</li>
+            <li>روح تعاون ومرونة في العمل</li>
+            <li>دقة في المتابعة والتوثيق</li>
+            <li>قابلية تعلم سريعة</li>
+          </ul>
+        </div>
+
+        <div class="side-block">
+          <h2 class="section-title">اللغات</h2>
+          <ul class="plain-list">
+            <li>العربية — لغة أم</li>
+            <li>الإنجليزية — مستوى متوسط</li>
+          </ul>
+        </div>
+
+        <div class="side-block">
+          <h2 class="section-title">بيانات شخصية</h2>
+          <div class="personal-grid">
+            <div><strong>الجنسية:</strong> <span>مصري</span></div>
+            <div><strong>الموقع:</strong> <span>القاهرة، مصر</span></div>
+            <div><strong>التفرّغ:</strong> <span>متاح للعمل</span></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button type="button" onclick="window.print()">طباعة / حفظ PDF</button>
+  </div>
+</body>
+</html>

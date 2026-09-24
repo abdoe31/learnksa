@@ -1,8 +1,17 @@
-# learnksa
+# Abdelrahman Hamdy — CV
 
-## المعالجة الدرامية — مائة مليون
+Professional CV for Abdelrahman Hamdy Abdelrahim (.NET | Angular Full Stack Developer).
 
-نُقلت معالجة المسلسل من العامية المصرية إلى العربية الفصحى، في إحدى عشرة حلقة.
+## Files
 
-- [`المعالجة-الدرامية.docx`](./المعالجة-الدرامية.docx) — المستند المنسّق للقراءة والطباعة
-- [`المعالجة-الدرامية.md`](./المعالجة-الدرامية.md) — النص نفسه بصيغة ماركداون
+- **[Abdelrahman_Hamdy_CV.docx](./Abdelrahman_Hamdy_CV.docx)** — Word resume (primary download)
+- **[CV-Abdelrahman-Hamdy.md](./CV-Abdelrahman-Hamdy.md)** — Markdown version
+- **[CV-Abdelrahman-Hamdy-ATS.txt](./CV-Abdelrahman-Hamdy-ATS.txt)** — Plain-text ATS-friendly version
+- **[CV-IMPROVEMENTS.md](./CV-IMPROVEMENTS.md)** — What changed in this update
+- `generate_cv.py` — regenerates the Word document
+
+## Update notes
+
+- Removed **YRP** and **Mrkbati** projects
+- Expanded detail on **Telecom Egypt**, **TOQ**, and **El Shorouk Academy** roles
+- Expanded **Travego** and **TheMatrix** project descriptions

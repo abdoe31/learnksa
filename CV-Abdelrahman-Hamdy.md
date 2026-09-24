@@ -1,0 +1,83 @@
+# Abdelrahman Hamdy Abdelrahim
+**.NET | Angular Full Stack Developer**
+
+Cairo, Egypt · +20 112 506 7726 · abdelrahman.hamdy.abdelrahim@gmail.com  
+[GitHub](https://github.com/abdoe31) · [LinkedIn](https://www.linkedin.com/in/abdelrahman-hamdy-450a05208)
+
+---
+
+## Professional Summary
+
+Full Stack .NET Developer with 3 years of experience building and maintaining production web applications using ASP.NET Core, Angular, SQL Server, and Entity Framework Core. Proven delivery of RESTful APIs, JWT authentication, Redis caching, and third-party integrations including payment gateways, government APIs, OpenAI agents, and WhatsApp Web. Focused on clean architecture, performance, and reliable enterprise/commercial systems.
+
+---
+
+## Professional Experience
+
+### Telecom Egypt — .NET Developer
+**Feb 2025 – Present | Cairo, Egypt**
+
+- Develop and enhance enterprise billing systems using ASP.NET Core, SQL Server, and RESTful APIs for telecom customer and usage workflows.
+- Design, maintain, and troubleshoot mission-critical backend services to support high-availability billing and operational processes.
+- Implement and refine Entity Framework Core data access, stored-procedure/query paths, and API contracts used by internal enterprise consumers.
+- Partner with cross-functional teams (business, QA, operations) to design, ship, and stabilize scalable features in production.
+
+### TOQ for Information Technology — .NET Developer
+**Aug 2024 – Jan 2025 | Riyadh, Remote**
+
+- Delivered production ASP.NET Core and Angular applications for commercial clients, from API design through frontend consumption.
+- Owned backend APIs, business workflows, and SQL Server / EF Core data models end to end — including validation, authorization, and release readiness.
+- Integrated third-party services such as payment gateways, government APIs, OpenAI agents, and WhatsApp Web into client platforms.
+- Improved application responsiveness with Redis caching strategies and SQL/query optimization on high-traffic endpoints.
+
+### El Shorouk Academy — .NET Developer
+**Aug 2023 – Oct 2024 | Cairo, Egypt**
+
+- Built and maintained internal academic and administrative systems with ASP.NET Core, SQL Server, and Microsoft data technologies.
+- Developed Web APIs and database-driven modules supporting enrollment, staff, and campus operational workflows.
+- Implemented JWT authentication and role-based access patterns for secure multi-user campus applications.
+- Maintained EF Core models, migrations, and SQL Server schemas; collaborated with stakeholders to iterate features in production use.
+
+---
+
+## Key Projects
+
+### Travego – Bus Booking System
+Online bus reservation platform covering trip search, seat booking, payments, and customer notifications.
+
+- Designed and implemented trip listing, seat selection, and reservation flows across ASP.NET Core Web API and Angular UI.
+- Integrated OPay Payment Gateway for online checkout, payment confirmation, and booking status updates.
+- Integrated SMS Gateway to send booking confirmations, reminders, and trip-related customer alerts.
+- Applied Redis caching for trip schedules and availability lookups to reduce latency on high-read booking endpoints.
+- Secured APIs with JWT authentication and structured SQL Server / EF Core models for trips, seats, and reservations.
+
+**Stack:** ASP.NET Core · Angular · SQL Server · EF Core · Redis · OPay · SMS · JWT
+
+### TheMatrix – E-learning Platform
+Learning Management System for educational institutions — courses, assessments, grading, and multi-role access.
+
+- Built course management features including video lectures, quizzes, assignments, submissions, and grading workflows.
+- Implemented JWT-secured, role-based access for students, instructors, and admins across backend APIs and Angular screens.
+- Delivered RESTful ASP.NET Core Web APIs consumed by an Angular frontend for catalog, enrollment, and assessment flows.
+- Modeled courses, enrollments, and assessments with Entity Framework Core and SQL Server for reliable academic data management.
+
+**Stack:** ASP.NET Core Web API · Angular · SQL Server · EF Core · JWT
+
+---
+
+## Education
+
+**Bachelor of Computer Science** — El Shorouk Academy *(2018–2022)*  
+Graduation Project: Excellent
+
+**Full Stack Web Development (.NET & Angular)** — Information Technology Institute (ITI) *(2023)*  
+Intensive full stack program
+
+---
+
+## Technical Skills
+
+- **Backend:** C#, ASP.NET Core (MVC & Web API), Entity Framework Core, SQL Server, LINQ, Redis
+- **Frontend:** Angular, TypeScript, JavaScript, HTML5, CSS3, Bootstrap, Razor Pages
+- **Integrations:** OpenAI Agents, WhatsApp Web, OPay, Arab Bank Payment Gateway, Government APIs, SMS Gateways
+- **Practices:** REST APIs, JWT Auth, Dependency Injection, Caching Strategies, SOLID, Git/GitHub

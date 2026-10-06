@@ -1,0 +1,45 @@
+name: Push
+
+on:
+  push:
+    branches: ["**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Generate series bible
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate Markdown and Word documents
+        run: python generate_bible.py
+
+      - name: Check committed Markdown is up to date
+        run: |
+          if ! git diff --exit-code -- 'المعالجة-الدرامية.md'; then
+            echo "::error::المعالجة-الدرامية.md is out of date. Run 'python generate_bible.py' and commit the result."
+            exit 1
+          fi
+
+      - name: Upload generated documents
+        uses: actions/upload-artifact@v4
+        with:
+          name: series-bible
+          path: |
+            المعالجة-الدرامية.md
+            المعالجة-الدرامية.docx
+          if-no-files-found: error

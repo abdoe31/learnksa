@@ -1198,7 +1198,7 @@ def write_docx(path: Path):
 
 
 def main():
-    root = Path("/workspace")
+    root = Path(__file__).resolve().parent
     md_path = root / "المعالجة-الدرامية.md"
     docx_path = root / "المعالجة-الدرامية.docx"
     write_markdown(md_path)

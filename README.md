@@ -14,3 +14,5 @@
 - [`plc_study/PLC_Netcracker_Presentation.pptx`](./plc_study/PLC_Netcracker_Presentation.pptx) — العرض التقديمي (17 شريحة، يُولَّد عبر `build_deck.py`)
 - [`plc_study/PLC_DISCOBOLE_Study.docx`](./plc_study/PLC_DISCOBOLE_Study.docx) — نفس الدراسة على نظام مفتوح المصدر (DISCOBOLE / ODACAT) مع شاشات وبنية وتدفقات حقيقية (يُولَّد عبر `build_document_disco.py`)
 - [`plc_study/PLC_DISCOBOLE_Presentation.pptx`](./plc_study/PLC_DISCOBOLE_Presentation.pptx) — العرض التقديمي المقابل (17 شريحة، يُولَّد عبر `build_deck_disco.py`)
+- [`plc_study/PLC_CatalogONE_Study.docx`](./plc_study/PLC_CatalogONE_Study.docx) — دراسة Amdocs CatalogONE: كتالوج/PLC مستقل يدفع المنتجات المعتمدة إلى Microsoft Dynamics 365 (يُولَّد عبر `build_document_catalogone.py`)
+- [`plc_study/PLC_CatalogONE_Presentation.pptx`](./plc_study/PLC_CatalogONE_Presentation.pptx) — العرض التقديمي المقابل (17 شريحة، يُولَّد عبر `build_deck_catalogone.py`)

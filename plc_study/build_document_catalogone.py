@@ -241,12 +241,9 @@ para("CatalogONE is built on the TM Forum data model and exposes TMF Open APIs. 
 h1("2. CatalogONE at a glance")
 para("CatalogONE is Amdocs' cloud-native catalog. It is designed as a stand-alone "
      "application that can sit on top of existing catalogs and BSS systems, or act "
-     "as the master catalog. It does not replace the CRM [A][P].")
-image("13_catalogone_datasheet.png",
-      "Figure 1. CatalogONE datasheet: business users configure products, prices, "
-      "channels and segments with no code; PLM includes workflow and approval "
-      "management. Source: Amdocs, CatalogONE – a new catalog paradigm (2025) [A].",
-      width_cm=14)
+     "as the master catalog. It does not replace the CRM [A][P]. Business users "
+     "configure products, prices, channels and segments with no code; PLM includes "
+     "workflow and approval management [A].")
 
 h2("2.1 What it is, and what it is not")
 table([
@@ -263,11 +260,8 @@ para("For an operator that already sells unrated enterprise products in Microsof
      "operators that rate usage; it is not required for this pattern [A][E].")
 
 h2("2.2 Modules")
-image("09_modules.png",
-      "Figure 2. CatalogONE is modular: Commerce, Charging, Centralized, Product "
-      "Lifecycle Management and iCatalog can be adopted one priority at a time. "
-      "Source: Amdocs, The 6 Steps to Turning Your Catalog into a Driver of Growth (2025) [A].",
-      width_cm=15)
+para("CatalogONE is modular. Commerce, Charging, Centralized, Product Lifecycle "
+     "Management and iCatalog can be adopted one priority at a time [A].")
 table([
     ["Module", "What it does", "Source"],
     ["Product Lifecycle Management",
@@ -308,9 +302,9 @@ bullets([
      "every consuming application (CRM, billing, charging, order management) [A]."),
 ])
 image("06_centralized_publish.png",
-      "Figure 3. CatalogONE Centralized: collaborative authoring, testing automation, "
+      "Figure 1. CatalogONE Centralized: collaborative authoring, testing automation, "
       "A/B testing and auto-release, then publish catalog information to consuming "
-      "applications. Source: Amdocs 6 Steps ebook, p.15 [A].", width_cm=15)
+      "applications. Source: Amdocs 6 Steps ebook, p.15 [A].", width_cm=14)
 
 h2("2.4 Core data model [S][A][P]")
 para("CatalogONE's APIs are based on the TM Forum data model [A]. The example column "
@@ -342,10 +336,10 @@ para("Amdocs describes a role-based UI with guided flows: marketing / business u
      "managers work in the same design portal with a different personalised "
      "experience [A]. Screen names below are illustrative [E].")
 
-image("03_six_steps.png",
-      "Figure 4. CatalogONE's six catalog capabilities. Step 5 is Product Lifecycle "
+image("03_six_steps_text.png",
+      "Figure 2. CatalogONE's six catalog capabilities. Step 5 is Product Lifecycle "
       "Management across the organisation. Source: Amdocs 6 Steps ebook, p.7 [A].",
-      width_cm=15)
+      width_cm=10)
 
 stage(
     "3.1 Stage 1: Ideation and business case",
@@ -373,10 +367,10 @@ stage(
     ["Business-case scoring screens and who signs the conception approval."],
 )
 
-image("07b_icatalog_page.png",
-      "Figure 5. iCatalog: dashboards and analytics used during ideation and after "
+image("07_icatalog_dashboard.png",
+      "Figure 3. iCatalog: dashboards and analytics used during ideation and after "
       "launch to optimise offers. Source: Amdocs 6 Steps ebook, p.16 [A].",
-      width_cm=15)
+      width_cm=12)
 
 stage(
     "3.2 Stage 2: Technical product definition",
@@ -428,11 +422,6 @@ stage(
         "Configure once, then launch to all channels (self-service, mobile, B2B portal) [A].",
     ],
 )
-
-image("05_commerce_standalone.png",
-      "Figure 6. CatalogONE Commerce sits as a layer on existing catalogs; business "
-      "users create bundles and promotions in days rather than weeks. Source: Amdocs "
-      "6 Steps ebook, p.12 [A].", width_cm=15)
 
 stage(
     "3.4 Stage 4: Pricing",
@@ -509,11 +498,6 @@ stage(
     ["Approval workflow configuration, role permissions, sequential vs parallel."],
 )
 
-image("08_plm.png",
-      "Figure 7. CatalogONE Product Lifecycle Management: ideation through end-of-life, "
-      "with simulations, automation, parallel work, workflow and approvals. "
-      "Source: Amdocs 6 Steps ebook, p.17 [A].", width_cm=15)
-
 stage(
     "3.7 Stage 7: Versioning",
     "Any status [S]",
@@ -578,6 +562,7 @@ table([
 ], widths=[0.7, 3.2, 2.6, 4.0, 2.9, 3.2])
 
 # ------------------------------------------------------------------ 4
+doc.add_page_break()
 h1("4. Integration with Dynamics 365: how CatalogONE hands the product over")
 
 h2("4.1 The principle: Dynamics consumes, it does not re-create")
@@ -589,14 +574,9 @@ para("That split is not a custom idea. Amdocs and Microsoft already productise i
      "the Customer Engagement Platform: Amdocs supplies Catalog, CPQ, Commerce and "
      "Order Management; Microsoft supplies Dynamics 365 Sales, Marketing and Customer "
      "Service, plus Power Platform [A].")
-image("12_amdocs_microsoft_cover.png",
-      "Figure 8. Amdocs and Microsoft Customer Engagement Platform. The unified "
-      "catalog is Amdocs; sales, marketing and customer service are Dynamics 365. "
-      "Source: Amdocs–Microsoft CEP datasheet (2024) [A].", width_cm=13)
-
 h2("4.2 Where Catalog sits relative to Dynamics")
 image("01_cep_architecture.png",
-      "Figure 9. Platform architecture: Catalog is a module of its own, next to "
+      "Figure 4. Platform architecture: Catalog is a module of its own, next to "
       "Marketing, Sales, CPQ, Commerce & Order Management and Customer Service. "
       "Sales in this stack is Dynamics 365. Source: Amdocs and Microsoft Customer "
       "Engagement Platform paper, p.3 [A].", width_cm=16)
@@ -605,7 +585,7 @@ para("The same paper states that the platform \"leverages the industry-leading A
      "Management, and adds Microsoft's Dynamics 365 modules focused on sales, "
      "marketing, and customer service\" [A]. CatalogONE is that unified catalog.")
 image("02_cep_catalog_and_crm.png",
-      "Figure 10. Complementary stack: \"Digital Enterprise Catalog\" on the Amdocs "
+      "Figure 5. Complementary stack: \"Digital Enterprise Catalog\" on the Amdocs "
       "side, \"Sales management\" on the CRM side, around one Customer Engagement "
       "Platform. Source: Amdocs–Microsoft CEP paper, p.4 [A].", width_cm=16)
 
@@ -756,14 +736,10 @@ table([
      "Operator quote in trade press, 2015"],
 ], widths=[3.4, 4.4, 5.2, 3.6])
 image("10_sprint_results.png",
-      "Figure 11. Sprint / T-Mobile US: CatalogONE as the product catalog for a "
+      "Figure 6. Sprint / T-Mobile US: CatalogONE as the product catalog for a "
       "cloud-native commerce transformation. Expected 50% time-to-market reduction; "
       "business users define offers. Source: TM Forum Excellence Awards case study [T].",
       width_cm=12)
-image("11_sprint_tmf_apis.png",
-      "Figure 12. Same case study: Amdocs designed the stack on TM Forum Open APIs, "
-      "including Product Catalog Management (TMF620) and Product Offering "
-      "Qualification. Source: TM Forum [T].", width_cm=12)
 
 # ------------------------------------------------------------------ 6
 h1("6. Points to explore further")

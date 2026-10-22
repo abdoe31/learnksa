@@ -267,7 +267,7 @@ text(s, x0, Inches(6.2), Inches(12), Inches(0.5),
 # ------------------------------------------------------------------ 5 modules
 s = slide("CatalogONE at a glance",
           "Standalone telecom catalog + PLM. Modular. Does not replace Dynamics.")
-picture(s, "09_modules.png", Inches(0.5), Inches(1.55), Inches(6.0), Inches(4.85),
+picture(s, "09_modules_list.png", Inches(0.5), Inches(1.55), Inches(6.0), Inches(4.85),
         "Source: Amdocs, 6 Steps ebook, p.19")
 table(s, Inches(6.7), Inches(1.55), Inches(6.1), [
     ["Module", "Role"],

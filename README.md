@@ -10,3 +10,4 @@
 ## دراسة نظم إدارة دورة حياة المنتج (PLC)
 
 - [`plc_study/PLC_System_Evidence.md`](./plc_study/PLC_System_Evidence.md) — النظام المقترح (Netcracker Product Management) مع أدلة حقيقية من شركات اتصالات ومصادر لكل معلومة
+- [`plc_study/PLC_Netcracker_Study.docx`](./plc_study/PLC_Netcracker_Study.docx) — دراسة تفصيلية لمراحل دورة حياة المنتج في Netcracker من الفكرة حتى التكامل مع CRM (يُولَّد عبر `build_document.py`)

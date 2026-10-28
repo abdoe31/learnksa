@@ -185,7 +185,7 @@ text(s, Inches(1.1), Inches(4.1), Inches(11.5), Inches(0.9),
      "A catalog-only PLC that publishes to consuming applications — including the customer's CRM",
      size=20, color=LILAC)
 text(s, Inches(1.1), Inches(5.7), Inches(11), Inches(0.45),
-     "Prepared by: [Your name]   |   October 2026   |   Draft 3", size=14, color=LILAC)
+     "Prepared by: [Your name]   |   October 2026   |   Draft 4", size=14, color=LILAC)
 notes(s, "CatalogONE is the PLC. It publishes to consuming apps and 'the customer's CRM'. "
          "Dynamics 365 is named on the Amdocs–Microsoft CEP, not as a CatalogONE connector.")
 
@@ -196,7 +196,7 @@ items = [
     ("02", "PLC and TM Forum", "The industry lifecycle model"),
     ("03", "CatalogONE at a glance", "Modules and data model"),
     ("04", "Using the system", "Eight stages from idea to launch-ready"),
-    ("05", "How catalog reaches CRM", "CatalogONE vs CEP vs Dynamics"),
+    ("05", "How catalog reaches CRM", "CatalogONE vs Customer Engagement Platform"),
     ("06", "Evidence", "Results at real operators"),
 ]
 for i, (n, t, d) in enumerate(items):
@@ -209,7 +209,7 @@ for i, (n, t, d) in enumerate(items):
 
 # ------------------------------------------------------------------ 3 takeaways
 s = slide("Why this PLC: catalog only. CRM is not replaced.",
-          "Two facts, kept separate: CatalogONE publishes to CRM. CEP names Dynamics 365.")
+          "Two facts, kept separate: CatalogONE publishes to CRM. The Customer Engagement Platform names Dynamics 365.")
 cards = [
     ("Catalog, not CRM", "CatalogONE owns products, prices, rules and approvals. "
      "It publishes to consuming apps and \"the customer's CRM\"."),
@@ -220,7 +220,7 @@ cards = [
     ("Business users configure", "Role-based UI, templates and building blocks. "
      "No code. No deployment overhead."),
     ("Publish, do not re-key", "Kafka + TMF620 to consuming applications. "
-     "Dynamics 365 is named on CEP, not on the CatalogONE datasheet."),
+     "Dynamics 365 is named on the Amdocs–Microsoft platform, not on CatalogONE."),
     ("Proven results", "European operator: 9 months to 1–2 weeks. "
      "Sprint / T-Mobile: expected 50% faster TTM."),
 ]
@@ -283,8 +283,8 @@ table(s, Inches(6.7), Inches(1.55), Inches(6.1), [
 ], [2.4, 3.7], size=13, row_h=Inches(0.52))
 
 # ------------------------------------------------------------------ 6 catalog / CRM split
-s = slide("Where Dynamics 365 is named: the Amdocs–Microsoft platform",
-          "CEP puts Catalog next to Dynamics. CatalogONE datasheets do not name Dynamics.")
+s = slide("Where Dynamics 365 is named: Customer Engagement Platform (CEP)",
+          "CEP = Amdocs catalog + CPQ + commerce + OM, on Dynamics 365. Not a CatalogONE plug-in.")
 picture(s, "01_cep_architecture.png", Inches(0.5), Inches(1.5), Inches(7.6), Inches(4.7),
         "Source: Amdocs and Microsoft CEP paper, p.3 — this is CEP, not a CatalogONE datasheet")
 for i, (t, d) in enumerate([
@@ -510,7 +510,7 @@ b = box(s, Inches(7.65), Inches(1.5), Inches(2.7), Inches(1.05), fill=MS, shape=
 text(s, 0, 0, 0, 0, ["Dynamics 365", "product catalog"], size=15, color=WHITE, bold=True,
      align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE, shape=b)
 text(s, Inches(10.5), Inches(1.5), Inches(2.3), Inches(1.15),
-     "Pre-built Catalog+Dynamics is CEP. Not a CatalogONE AppSource connector.",
+     "Pre-built Catalog+Dynamics is the Customer Engagement Platform. Not a CatalogONE plug-in.",
      size=12, color=GREY)
 table(s, Inches(0.55), Inches(2.85), Inches(12.2), [
     ["Catalog / TMF620 item", "Dynamics 365 Sales entity [M] — example [E]"],
@@ -521,7 +521,7 @@ table(s, Inches(0.55), Inches(2.85), Inches(12.2), [
     ["Status Active / Launched / Retired", "Product status Active / Retired"],
 ], [6.1, 6.1], size=14, row_h=Inches(0.48))
 text(s, Inches(0.55), Inches(6.25), Inches(12.2), Inches(0.5),
-     "Two paths: buy CEP (Catalog next to Dynamics, documented) or keep Dynamics and integrate via TMF620 / Kafka (CatalogONE pattern for any CRM).",
+     "Two paths: buy the Customer Engagement Platform, or keep Dynamics and integrate CatalogONE via TMF620 / Kafka.",
      size=13, color=NAVY, bold=True)
 
 # ------------------------------------------------------------------ 16 evidence
@@ -552,13 +552,15 @@ bullets(s, Inches(0.55), Inches(1.4), Inches(6.7), Inches(5.3), [
     ("Idea to Active ", "inside CatalogONE: eight stages, approval gates, versions, testing."),
     ("CatalogONE publishes ", "to consuming applications and \"the customer's CRM\" "
      "via Centralized, Kafka and TMF620."),
-    ("Dynamics 365 is named on CEP, ", "as Sales and Customer Service next to Catalog — not on "
-     "the CatalogONE datasheet as a connector. PLDT is live on CEP care."),
-    ("Two paths: ", "buy CEP, or keep Dynamics and integrate via TMF620. CRM is not replaced."),
+    ("Dynamics 365 is named on the Customer Engagement Platform, ",
+     "as Sales and Customer Service next to Catalog — not on the CatalogONE datasheet. "
+     "PLDT is live on that platform for care."),
+    ("Two paths: ", "buy the Customer Engagement Platform, or keep Dynamics and "
+     "integrate CatalogONE via TMF620. CRM is not replaced."),
     ("Changes are versioned, ", "so existing customers are never affected."),
     ("Proven CatalogONE ", "at a European quad-play, Sprint / T-Mobile and KT. "
-     "CEP + Dynamics 365 is live at PLDT for case management."),
-], size=15)
+     "Customer Engagement Platform + Dynamics 365 is live at PLDT for case management."),
+], size=14)
 refs = [
     "Amdocs CatalogONE datasheets (2025)",
     "Amdocs, 6 Steps catalog ebook (2025)",

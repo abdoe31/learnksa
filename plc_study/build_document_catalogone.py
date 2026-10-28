@@ -176,10 +176,10 @@ para("System studied: Amdocs CatalogONE, a standalone telecom product catalog an
      "Product Lifecycle Management (PLM) platform. It is BSS-agnostic: it owns the "
      "catalog, not the CRM. Amdocs documents that CatalogONE publishes to consuming "
      "applications and to \"the customer's CRM\". The Amdocs–Microsoft Customer "
-     "Engagement Platform is the product that puts an Amdocs Catalog next to "
+     "Engagement Platform (CEP) is the product that puts an Amdocs Catalog next to "
      "Dynamics 365. Amdocs does not publish a CatalogONE-branded connector named "
      "Dynamics 365.", color=GREY)
-para("Prepared by: [Your name]    |    Version: Draft 3 for review    |    October 2026",
+para("Prepared by: [Your name]    |    Version: Draft 4 for review    |    October 2026",
      color=GREY)
 
 note("How to read this document.",
@@ -604,11 +604,15 @@ table([
 ], widths=[4.4, 7.4, 4.8])
 
 h2("4.2 What the Amdocs–Microsoft platform documents: Catalog next to Dynamics 365")
-para("Separately, Amdocs and Microsoft sell the Customer Engagement Platform. That "
-     "product \"leverages … a unified Catalog, CPQ, Commerce and Order Management, "
-     "and adds Microsoft's Dynamics 365 modules focused on sales, marketing, and "
-     "customer service\" [A]. AppSource lists it as a Dynamics 365 offering, with "
-     "\"Unified Catalog Serving the Entire Platform\" [A].")
+para("CEP is the Amdocs–Microsoft Customer Engagement Platform. It is not CatalogONE. "
+     "It is a packaged telecom CRM that Amdocs and Microsoft sell together: "
+     "Amdocs catalog, CPQ, commerce and order management, plus Microsoft Dynamics 365 "
+     "Sales, Marketing and Customer Service, on Azure [A]. \"Buy CEP\" means buy that "
+     "whole platform — not a CatalogONE plug-in for an existing Dynamics org.")
+para("Amdocs' wording: the platform \"leverages … a unified Catalog, CPQ, Commerce and "
+     "Order Management, and adds Microsoft's Dynamics 365 modules focused on sales, "
+     "marketing, and customer service\" [A]. AppSource lists it as a Dynamics 365 "
+     "offering, with \"Unified Catalog Serving the Entire Platform\" [A].")
 para("In CEP papers Amdocs says \"Catalog\", not \"CatalogONE\". CatalogONE is "
      "Amdocs' catalog/PLM product, so it is the natural catalog in that stack, "
      "but that identification is not written as \"CatalogONE → Dynamics 365\" [A][E].")
@@ -672,9 +676,9 @@ para("Dynamics product statuses are Draft, Active, Under Revision and Retired [M
 h2("4.5 Two practical paths, if Dynamics is already the CRM")
 table([
     ["Path", "What it is", "Evidence"],
-    ["Buy / adopt CEP",
-     "Amdocs Catalog + Dynamics 365 as one pre-integrated platform. "
-     "PLDT is live on CEP customer service (Unified Case Management)",
+    ["Buy the Customer Engagement Platform (CEP)",
+     "The Amdocs–Microsoft packaged CRM: Amdocs catalog + Dynamics 365 as one "
+     "platform. PLDT is live on CEP customer service (Unified Case Management)",
      "Amdocs–Microsoft papers [A]; PLDT go-live and IDC case study [A][I]"],
     ["Keep current Dynamics, add CatalogONE",
      "CatalogONE publishes via TMF620 / Kafka; an integration layer maps into "

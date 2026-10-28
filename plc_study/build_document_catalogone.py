@@ -1,4 +1,4 @@
-"""Builds the PLC study document (Amdocs CatalogONE, catalog-only PLC that publishes to Dynamics 365).
+"""Builds the PLC study document (Amdocs CatalogONE, catalog-only PLC that publishes to consuming apps / CRM).
 
 Run:  python3 build_document_catalogone.py
 """
@@ -169,14 +169,17 @@ r.bold = True
 r.font.color.rgb = NAVY
 r.font.size = Pt(11)
 title = doc.add_paragraph()
-r = title.add_run("Product Lifecycle Management in Amdocs CatalogONE:\nfrom Idea to Dynamics 365")
+r = title.add_run("Product Lifecycle Management in Amdocs CatalogONE:\nfrom Idea to CRM")
 r.bold = True
 r.font.size = Pt(22)
 para("System studied: Amdocs CatalogONE, a standalone telecom product catalog and "
      "Product Lifecycle Management (PLM) platform. It is BSS-agnostic: it owns the "
-     "catalog, not the CRM. The documented publish path into Microsoft Dynamics 365 "
-     "is the Amdocs–Microsoft Customer Engagement Platform.", color=GREY)
-para("Prepared by: [Your name]    |    Version: Draft 1 for review    |    October 2026",
+     "catalog, not the CRM. Amdocs documents that CatalogONE publishes to consuming "
+     "applications and to \"the customer's CRM\". The Amdocs–Microsoft Customer "
+     "Engagement Platform is the product that puts an Amdocs Catalog next to "
+     "Dynamics 365. Amdocs does not publish a CatalogONE-branded connector named "
+     "Dynamics 365.", color=GREY)
+para("Prepared by: [Your name]    |    Version: Draft 3 for review    |    October 2026",
      color=GREY)
 
 note("How to read this document.",
@@ -184,16 +187,17 @@ note("How to read this document.",
      "the Amdocs–Microsoft Customer Engagement Platform; [P] = Appledore Research "
      "solution profile of CatalogONE (2020); [T] = TM Forum case study or Open API "
      "conformance list; [S] = TM Forum TMF620 and related Open APIs; [M] = Microsoft "
-     "documentation; [E] = illustrative example. CatalogONE user guides are not "
+     "documentation; [I] = IDC customer case study on PLDT Unified Case Management "
+     "(hosted by Amdocs, June 2026); [E] = illustrative example. CatalogONE user guides are not "
      "public, so screen names in the walkthroughs are illustrative and will differ "
      "in a real installation.")
 
 # ------------------------------------------------------------------ 0
 h1("Key takeaways")
 bullets([
-    ("Catalog only, CRM stays Dynamics. ", "CatalogONE is a product catalog and PLM. "
-     "It is not a CRM. Microsoft Dynamics 365 remains the sales, quote and order "
-     "front end. Amdocs and Microsoft already sell this split as one platform [A]."),
+    ("Catalog only, not a CRM. ", "CatalogONE is a product catalog and PLM. It is "
+     "not a CRM. It publishes approved catalog data to consuming applications; "
+     "Amdocs names \"the customer's CRM\" as one of those consumers [A]."),
     ("One source of truth. ", "Commercial, charging and network-service definitions "
      "live in one catalog. Downstream systems consume it instead of keeping their "
      "own copies [A][P]."),
@@ -205,7 +209,8 @@ bullets([
      "with no code and no deployment overhead [A]."),
     ("Publish, do not re-key. ", "CatalogONE Centralized authors once and publishes "
      "catalog information to consuming applications. Distribution uses a Kafka bus "
-     "and TMF APIs, in minutes rather than weeks [A][P]."),
+     "and TMF APIs, in minutes rather than weeks [A][P]. Dynamics 365 is not named "
+     "on the CatalogONE datasheet; it is named on the Amdocs–Microsoft CEP [A]."),
     ("Proven results. ", "A European quad-play operator moved new-offer time from "
      "up to nine months to 1–2 weeks. Sprint / T-Mobile expected a 50% time-to-market "
      "cut with CatalogONE. KT launched CatalogONE to accelerate 5G offers [P][T][A]."),
@@ -234,8 +239,9 @@ para("CatalogONE is built on the TM Forum data model and exposes TMF Open APIs. 
      "(Product Catalog Management) and related commerce APIs. CatalogONE PLM is "
      "described as covering ideation through end-of-life, so the stages below follow "
      "the industry model rather than a vendor-only one [A][T][S]. This document covers "
-     "everything up to Launched: the stages before CRM, and the hand-over to "
-     "Dynamics 365.", italic=True)
+     "everything up to Launched: the stages before CRM, how CatalogONE publishes "
+     "to consuming systems, and how that relates to Dynamics 365 in the "
+     "Amdocs–Microsoft platform.", italic=True)
 
 # ------------------------------------------------------------------ 2
 h1("2. CatalogONE at a glance")
@@ -461,7 +467,7 @@ stage(
         "Adds constraints: the backup-link add-on is only sold with a 24 or 36-month contract.",
         "Sets KPIs for iCatalog to watch after launch [A].",
     ],
-    "Rules defined, so Dynamics / CPQ will only offer the product to eligible customers.",
+    "Rules defined, so the sales channel / CPQ will only offer the product to eligible customers.",
     [
         "Wizard includes \"channel selection, segment selection and setting KPIs\" "
         "before launch across those channels and segments [A].",
@@ -533,12 +539,13 @@ stage(
         "distribution supports sandboxes, validation and testing [P].",
         "Test team runs test quotes and orders to check pricing, rules and delivery mapping.",
         "Centralized catalog supports testing automation and A/B testing [A].",
-        "If tests pass, the product moves to Active, ready to be published to Dynamics.",
+        "If tests pass, the product moves to Active, ready to be published to "
+        "consuming applications (CRM, CPQ, ordering) [A].",
         "If tests fail, the product is Rejected (final) or reworked as a new version.",
         "Launch to production is described as \"at the touch of a button\" once "
         "approved [A].",
     ],
-    "Status Active: validated and ready to hand over to Dynamics 365.",
+    "Status Active: validated and ready to publish to consuming applications.",
     [
         "Distribution includes \"sandboxes, validation and testing\" so a business-owner "
         "approval process can replace an IT-testing bottleneck [P].",
@@ -563,103 +570,92 @@ table([
 
 # ------------------------------------------------------------------ 4
 doc.add_page_break()
-h1("4. Integration with Dynamics 365: how CatalogONE hands the product over")
+h1("4. How the catalog reaches CRM — and what Amdocs actually documents")
 
-h2("4.1 The principle: Dynamics consumes, it does not re-create")
-para("In this pattern the catalog is the single source of truth. Dynamics 365 Sales "
-     "does not become the place where products are invented. Product managers finish "
-     "the lifecycle in CatalogONE; Dynamics receives the approved, sellable definition "
-     "and uses it on quotes, orders and contracts.")
-para("That split is not a custom idea. Amdocs and Microsoft already productise it as "
-     "the Customer Engagement Platform: Amdocs supplies Catalog, CPQ, Commerce and "
-     "Order Management; Microsoft supplies Dynamics 365 Sales, Marketing and Customer "
-     "Service, plus Power Platform [A].")
-h2("4.2 Where Catalog sits relative to Dynamics")
+note("Read this section first.",
+     "Two facts are documented, and they are not the same sentence. "
+     "(1) CatalogONE publishes catalog data to consuming applications and to "
+     "\"the customer's CRM\" [A]. (2) The Amdocs–Microsoft Customer Engagement "
+     "Platform puts an Amdocs unified Catalog next to Dynamics 365 Sales [A]. "
+     "Amdocs does not publish a sentence that says \"CatalogONE sends data to "
+     "Microsoft Dynamics 365 CRM\". The mapping table later in this section is "
+     "an example [E], not a vendor connector spec.")
+
+h2("4.1 What CatalogONE documents: publish to consuming systems, including CRM")
+para("CatalogONE Centralized \"enables centralized authoring … publishing catalog "
+     "information to multiple consuming applications\" [A]. The CatalogONE brochure "
+     "describes \"integration to Amdocs CPQ and the customer's CRM solution\" [A]. "
+     "It does not name Microsoft Dynamics 365 on that page.")
+para("How that publish is done, as documented for CatalogONE [A][P][T][S]:")
+table([
+    ["Mechanism", "What Amdocs / TM Forum say", "Named target"],
+    ["CatalogONE Centralized",
+     "Author once; publish to multiple consuming applications [A]",
+     "Consuming applications (not named as Dynamics)"],
+    ["Kafka distribution",
+     "Synchronise catalog definitions to other systems in minutes [P]",
+     "Federated / downstream systems"],
+    ["TMF Open APIs (TMF620 and related)",
+     "API-first, TMF data model; Amdocs is certified on TMF620 [A][T]",
+     "Any system that consumes TMF620"],
+    ["CPQ + CRM",
+     "\"integration to Amdocs CPQ and the customer's CRM solution\" [A]",
+     "The operator's CRM (unnamed)"],
+], widths=[4.4, 7.4, 4.8])
+
+h2("4.2 What the Amdocs–Microsoft platform documents: Catalog next to Dynamics 365")
+para("Separately, Amdocs and Microsoft sell the Customer Engagement Platform. That "
+     "product \"leverages … a unified Catalog, CPQ, Commerce and Order Management, "
+     "and adds Microsoft's Dynamics 365 modules focused on sales, marketing, and "
+     "customer service\" [A]. AppSource lists it as a Dynamics 365 offering, with "
+     "\"Unified Catalog Serving the Entire Platform\" [A].")
+para("In CEP papers Amdocs says \"Catalog\", not \"CatalogONE\". CatalogONE is "
+     "Amdocs' catalog/PLM product, so it is the natural catalog in that stack, "
+     "but that identification is not written as \"CatalogONE → Dynamics 365\" [A][E].")
 image("01_cep_architecture.png",
-      "Figure 4. Platform architecture: Catalog is a module of its own, next to "
-      "Marketing, Sales, CPQ, Commerce & Order Management and Customer Service. "
-      "Sales in this stack is Dynamics 365. Source: Amdocs and Microsoft Customer "
-      "Engagement Platform paper, p.3 [A].", width_cm=16)
-para("The same paper states that the platform \"leverages the industry-leading Amdocs "
-     "Commerce & Care Suite, including a unified Catalog, CPQ, Commerce and Order "
-     "Management, and adds Microsoft's Dynamics 365 modules focused on sales, "
-     "marketing, and customer service\" [A]. CatalogONE is that unified catalog.")
+      "Figure 4. CEP architecture: Catalog is its own module, next to Sales. "
+      "In this platform Sales is Dynamics 365. Source: Amdocs and Microsoft "
+      "Customer Engagement Platform paper, p.3 [A].", width_cm=16)
 image("02_cep_catalog_and_crm.png",
-      "Figure 5. Complementary stack: \"Digital Enterprise Catalog\" on the Amdocs "
-      "side, \"Sales management\" on the CRM side, around one Customer Engagement "
-      "Platform. Source: Amdocs–Microsoft CEP paper, p.4 [A].", width_cm=16)
+      "Figure 5. Complementary stack: Digital Enterprise Catalog (Amdocs) and "
+      "Sales management (Dynamics) on one platform. Source: Amdocs–Microsoft "
+      "CEP paper, p.4 [A].", width_cm=16)
+para("CEP also states that agent actions are \"captured and updated across all "
+     "relevant billing, CRM, operations, and product databases\" [A]. That is "
+     "platform-level sync, not a CatalogONE API named in a CatalogONE datasheet.")
+para("A live operator on CEP is PLDT (Philippines). Amdocs announced the go-live "
+     "on 7 May 2025. Agents use Microsoft Copilot and Microsoft Dynamics 365, "
+     "with network validation and real-time dashboards [A]. In June 2026 IDC "
+     "published a case study (Christopher Silberberg and Ahmad Latif Ali) on "
+     "PLDT Unified Case Management on CEP: six weeks after go-live, 48% faster "
+     "L1 ticket resolution and a 27-point NPS increase on the targeted use "
+     "cases [A][I].")
+para("That IDC paper is customer care: ticketing and case handling on CEP, with "
+     "Dynamics 365 as the agent workspace. The May 2025 go-live also mentions "
+     "faster service rollouts at platform level. Neither source describes "
+     "CatalogONE publishing product-catalog data into Dynamics 365 Sales [A][I].")
 
-h2("4.3 What gets published")
-table([
-    ["Item", "Why Dynamics needs it", "Source"],
-    ["Offering and bundle structure",
-     "So the salesperson can select the product and its add-ons", "[A][S]"],
-    ["Prices, discounts, contract terms",
-     "So the quote price is always the approved price", "[A][S][M]"],
-    ["Eligibility (channel, segment, market)",
-     "So Dynamics / CPQ only shows products the customer can buy", "[A]"],
-    ["Dependencies and constraints",
-     "So invalid combinations cannot be quoted", "[A]"],
-    ["Validity dates (start and end of sale)",
-     "So the product appears and disappears on time", "[S]"],
-    ["Lifecycle status and version",
-     "So Dynamics knows which version is sellable", "[S][M]"],
-], widths=[5.4, 8.8, 2.4])
-
-h2("4.4 When it gets published")
+h2("4.3 What is not publicly documented")
 bullets([
-    "Only products that have passed test (Active) are published; anything In Study, "
-    "In Design or In Test stays inside CatalogONE [S][A].",
-    "Launch to all channels is described as configure-once, including the B2B "
-    "portal [A]. Dynamics 365 is the enterprise sales channel in this pattern [A][E].",
-    "The start of marketing (Active to Launched) can follow the offering's validity "
-    "start date, so a product can be prepared in advance and go on sale on a planned "
-    "date [S].",
-    "Publication can be limited to chosen channels and segments through the rules "
-    "defined in Stage 5 [A].",
+    "A CatalogONE product page, datasheet or API guide that names Microsoft "
+    "Dynamics 365 as the destination.",
+    "An AppSource app called CatalogONE for Dynamics.",
+    "A vendor field mapping from CatalogONE / TMF620 entities onto Dataverse "
+    "Product, Price list item and Bundle.",
+    "Whether CatalogONE can be plugged into an existing Dynamics 365 Sales org "
+    "(such as WE Data) without buying the full Customer Engagement Platform.",
+    "Any sentence in the IDC PLDT case study that says CatalogONE sends "
+    "catalog data to Dynamics 365. That paper is Unified Case Management on CEP.",
 ])
 
-h2("4.5 How it is published")
-para("Two documented mechanisms work together [A][P][S]:")
-numbered([
-    "Master-catalog publish. CatalogONE Centralized \"enables centralized authoring "
-    "… publishing catalog information to multiple consuming applications\" [A]. "
-    "Dynamics 365 is one consuming application.",
-    "Event distribution. CatalogONE uses a Kafka bus to synchronise definitions "
-    "between systems in minutes rather than weeks, so a business-owner approval "
-    "can replace an IT ticket [P].",
-    "Standard APIs. CatalogONE microservices expose TM Forum Open APIs. Amdocs is "
-    "certified on TMF620 (Product Catalog Management). TMF620 events notify "
-    "consumers when an offering is created, changed or changes status [A][T][S].",
-    "Qualification at quote time. TMF679 Product Offering Qualification lets the "
-    "sales channel ask \"can this customer get this offer here?\" against the "
-    "catalog rules [T][S].",
-])
+h2("4.4 Example only: how TMF620 items would land in Dynamics 365 Sales [E][M]")
+para("If CatalogONE (or the CEP catalog) is the source of truth, and Dynamics 365 "
+     "Sales is the CRM, the industry mapping is the same pattern used for any "
+     "TMF620 catalog. The table is an illustration from Microsoft's product-catalog "
+     "entities plus the TMF model. It is not copied from an Amdocs CatalogONE "
+     "connector guide [E][M][S].")
 table([
-    ["API / mechanism", "What it does in the hand-over", "Evidence"],
-    ["TMF620 Product Catalog Management",
-     "Dynamics (or the integration layer) reads catalogs, offerings, prices, specifications",
-     "Amdocs certified [T]; CatalogONE API-first [A]"],
-    ["TMF620 event notifications",
-     "Dynamics stays in sync on create / change / status change, without re-keying",
-     "Part of TMF620 [S]; Kafka distribution [P]"],
-    ["TMF679 Product Offering Qualification",
-     "At quote time: can this customer get this offer here?",
-     "Used with Amdocs DigitalONE at Sprint [T]"],
-    ["TMF622 Product Ordering",
-     "The order references the offering ID and version",
-     "Amdocs certified [T]"],
-    ["Kafka catalog distribution",
-     "Push approved versions to CRM, CPQ, ordering in minutes",
-     "Appledore profile of CatalogONE [P]"],
-], widths=[4.8, 7.4, 4.4])
-
-h2("4.6 Mapping CatalogONE (TMF620) onto Dynamics 365 Sales")
-para("Dynamics 365 Sales already has a product catalog [M]. In this pattern those "
-     "tables are the destination, not the authoring system. An integration layer "
-     "(the CEP pre-integration, or Azure / Dataverse Web API) maps as follows [A][M][E]:")
-table([
-    ["CatalogONE / TMF620", "Dynamics 365 Sales entity [M]"],
+    ["Catalog / TMF620 item", "Dynamics 365 Sales entity [M]"],
     ["Product Offering", "Product"],
     ["Bundle offering", "Product bundle"],
     ["Product Catalog / Category", "Product family"],
@@ -670,45 +666,25 @@ table([
     ["Lifecycle status: Active / Launched / Retired", "Product status: Active / Retired"],
 ], widths=[7.6, 9.0])
 para("Dynamics product statuses are Draft, Active, Under Revision and Retired [M]. "
-     "Study, design, test and approval stay in CatalogONE. Dynamics receives only "
-     "products that are ready to sell. A later catalog version maps to Dynamics "
-     "\"Under Revision\" then back to Active when the new version is published [M][E].",
-     italic=True)
+     "Study, design, test and approval would stay in CatalogONE; Dynamics would "
+     "receive only products that are ready to sell [S][M][E].", italic=True)
 
-h2("4.7 What the salesperson sees in Dynamics")
-para("When an enterprise account manager creates an opportunity or quote in Dynamics "
-     "365 Sales [M][E]:")
-bullets([
-    "Only published (Active) products and bundles appear.",
-    "Price list items come from the catalog prices that Finance approved.",
-    "Bundles and add-ons follow the structure built in CatalogONE Commerce.",
-    "Related products (backup link, extra IP block) appear as accessory / up-sell "
-    "suggestions.",
-    "If CPQ is in the stack, serviceability, multi-level discounts and contract "
-    "amendments are evaluated against the same catalog [A].",
-])
-para("Amdocs states that any action taken by an agent is \"captured and updated "
-     "across all relevant billing, CRM, operations, and product databases to ensure "
-     "a real-time, single source of information\" [A].")
-
-h2("4.8 When a product changes after launch")
-numbered([
-    "The Product Manager creates a new version in CatalogONE (Stage 7) and takes "
-    "it through approval and test.",
-    "Auto-release / Kafka / TMF620 events push the new version to Dynamics [A][P][S].",
-    "New quotes and orders in Dynamics use the new version. Existing customers keep "
-    "the version they bought, because each order recorded the offering version [S].",
-    "When the old version reaches its end-of-sale date, it is Retired in the catalog "
-    "and retired in Dynamics so it disappears from sales screens [S][M].",
-])
-
-h2("4.9 Why this matches an operator that already runs Dynamics")
+h2("4.5 Two practical paths, if Dynamics is already the CRM")
+table([
+    ["Path", "What it is", "Evidence"],
+    ["Buy / adopt CEP",
+     "Amdocs Catalog + Dynamics 365 as one pre-integrated platform. "
+     "PLDT is live on CEP customer service (Unified Case Management)",
+     "Amdocs–Microsoft papers [A]; PLDT go-live and IDC case study [A][I]"],
+    ["Keep current Dynamics, add CatalogONE",
+     "CatalogONE publishes via TMF620 / Kafka; an integration layer maps into "
+     "Dataverse. This is how CatalogONE describes any CRM, not a boxed Dynamics connector",
+     "CatalogONE: consuming applications + customer's CRM [A]; mapping is [E]"],
+], widths=[4.2, 8.0, 4.4])
 para("CatalogONE is documented as requiring \"no system or catalog replacements\" "
-     "and as able to sit on top of existing catalogs and BSS [A]. The CRM in the "
-     "joint Amdocs–Microsoft stack is Dynamics 365, not a second CRM [A]. For an "
-     "enterprise operator whose order management and billing already sit on Dynamics, "
-     "the catalog / PLM is the missing upstream system; Dynamics stays the place "
-     "sales works.")
+     "and as able to sit on top of existing catalogs and BSS [A]. That supports "
+     "keeping Dynamics. It does not, by itself, prove a ready-made CatalogONE-to-"
+     "Dynamics feed.")
 
 # ------------------------------------------------------------------ 5
 h1("5. Evidence from real operators")
@@ -734,6 +710,12 @@ table([
      "Time to market for new offers cut by more than 80%; complex offers from "
      "idea to production in under three days (CTO quote)",
      "Operator quote in trade press, 2015"],
+    ["PLDT (Philippines)",
+     "Amdocs–Microsoft Customer Engagement Platform: Unified Case Management. "
+     "Agents use Dynamics 365. Not a CatalogONE catalog-publish case",
+     "Six weeks after go-live: 48% faster L1 resolution; +27 NPS on targeted "
+     "use cases. Press names Dynamics 365 and Copilot as the agent workspace",
+     "Amdocs go-live, 7 May 2025 [A]; IDC case study, June 2026 [I]"],
 ], widths=[3.4, 4.4, 5.2, 3.6])
 image("10_sprint_results.png",
       "Figure 6. Sprint / T-Mobile US: CatalogONE as the product catalog for a "
@@ -783,6 +765,14 @@ refs = [
     "https://appsource.microsoft.com/en-us/product/dynamics-365/cyprus1676381115144.customerengagementplatform",
     "Amdocs, press release, Amdocs and Microsoft introduce Customer Engagement Platform (27 Feb 2023): "
     "https://www.amdocs.com/news-press/amdocs-and-microsoft-expand-strategic-partnership-reimagine-telco-experience",
+    "Amdocs, press release, PLDT Goes Live with the Amdocs Customer Engagement Platform (7 May 2025): "
+    "https://www.amdocs.com/press-release/pldt-goes-live-amdocs-customer-engagement-platform-redefine-customer",
+    "IDC (Christopher Silberberg and Ahmad Latif Ali), How PLDT Delivered Customer "
+    "Experience Gains in Just Six Weeks — Unified Case Management on the Amdocs "
+    "Customer Engagement Platform (June 2026): "
+    "https://www.amdocs.com/sites/default/files/2026-06/Amdocs-PLDT-idc-case-study.pdf",
+    "Amdocs, case-study landing page for the same IDC paper: "
+    "https://www.amdocs.com/insights/case-study/how-pldt-delivered-customer-experience-gains-just-six-weeks",
     "TM Forum, Sprint / T-Mobile cloud-native case study (CatalogONE): "
     "https://www.tmforum.org/wp-content/uploads/2021/02/TM-Forum-Excellence-Awards-Case-Study-Cloud_Sprint.pdf",
     "Amdocs, KT implements CatalogONE (10 Nov 2020): "

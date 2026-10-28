@@ -1,4 +1,4 @@
-"""Builds the PLC study presentation (Amdocs CatalogONE, idea to Dynamics 365).
+"""Builds the PLC study presentation (Amdocs CatalogONE, idea to CRM).
 
 Run:  python3 build_deck_catalogone.py
 """
@@ -117,7 +117,7 @@ def slide(title, subtitle=None):
     if subtitle:
         text(s, Inches(0.6), Inches(1.0), Inches(12), Inches(0.45), subtitle, size=15, color=GREY)
     text(s, Inches(0.6), Inches(7.05), Inches(9.5), Inches(0.3),
-         "PLC study  |  Amdocs CatalogONE: from idea to Dynamics 365", size=10, color=GREY)
+         "PLC study  |  Amdocs CatalogONE: from idea to CRM", size=10, color=GREY)
     text(s, Inches(11.7), Inches(7.05), Inches(1.0), Inches(0.3), f"{_page[0]} / {TOTAL}", size=10,
          color=GREY, align=PP_ALIGN.RIGHT)
     return s
@@ -181,22 +181,22 @@ box(s, Inches(0.8), Inches(2.1), Inches(0.12), Inches(2.6), fill=ACCENT)
 text(s, Inches(1.1), Inches(2.0), Inches(11), Inches(0.5), "PLC STUDY", size=16, color=LILAC, bold=True)
 text(s, Inches(1.1), Inches(2.5), Inches(11.5), Inches(1.5),
      "Product Lifecycle Management in Amdocs CatalogONE", size=36, color=WHITE, bold=True)
-text(s, Inches(1.1), Inches(4.1), Inches(11), Inches(0.7),
-     "From idea to Dynamics 365: a catalog-only PLC that publishes into CRM",
-     size=22, color=LILAC)
+text(s, Inches(1.1), Inches(4.1), Inches(11.5), Inches(0.9),
+     "A catalog-only PLC that publishes to consuming applications — including the customer's CRM",
+     size=20, color=LILAC)
 text(s, Inches(1.1), Inches(5.7), Inches(11), Inches(0.45),
-     "Prepared by: [Your name]   |   October 2026", size=14, color=LILAC)
-notes(s, "CatalogONE is the PLC. Dynamics 365 stays the CRM. Walk the manager through "
-         "that split, then the eight stages, then the publish path.")
+     "Prepared by: [Your name]   |   October 2026   |   Draft 3", size=14, color=LILAC)
+notes(s, "CatalogONE is the PLC. It publishes to consuming apps and 'the customer's CRM'. "
+         "Dynamics 365 is named on the Amdocs–Microsoft CEP, not as a CatalogONE connector.")
 
 # ------------------------------------------------------------------ 2 agenda
 s = slide("Agenda")
 items = [
-    ("01", "Why this PLC", "Catalog only; CRM stays Dynamics"),
+    ("01", "Why this PLC", "Catalog only; CRM is not replaced"),
     ("02", "PLC and TM Forum", "The industry lifecycle model"),
     ("03", "CatalogONE at a glance", "Modules and data model"),
     ("04", "Using the system", "Eight stages from idea to launch-ready"),
-    ("05", "Publish to Dynamics 365", "How the product reaches the salesperson"),
+    ("05", "How catalog reaches CRM", "CatalogONE vs CEP vs Dynamics"),
     ("06", "Evidence", "Results at real operators"),
 ]
 for i, (n, t, d) in enumerate(items):
@@ -208,33 +208,34 @@ for i, (n, t, d) in enumerate(items):
     text(s, x + Inches(1.3), y + Inches(0.75), Inches(4.3), Inches(0.5), d, size=14, color=GREY)
 
 # ------------------------------------------------------------------ 3 takeaways
-s = slide("Why this PLC: catalog only, CRM stays Dynamics")
+s = slide("Why this PLC: catalog only. CRM is not replaced.",
+          "Two facts, kept separate: CatalogONE publishes to CRM. CEP names Dynamics 365.")
 cards = [
     ("Catalog, not CRM", "CatalogONE owns products, prices, rules and approvals. "
-     "Dynamics 365 stays the sales, quote and order front end."),
+     "It publishes to consuming apps and \"the customer's CRM\"."),
     ("One source of truth", "Commercial and technical definitions live once. "
-     "Dynamics, ordering and billing consume them."),
+     "CRM, ordering and billing consume them."),
     ("A governed journey", "Ideation to end-of-life, with workflow, approvals, "
      "simulations and versioned change."),
     ("Business users configure", "Role-based UI, templates and building blocks. "
      "No code. No deployment overhead."),
-    ("Publish, do not re-key", "Master catalog + Kafka + TMF620 events push "
-     "Active products into Dynamics."),
+    ("Publish, do not re-key", "Kafka + TMF620 to consuming applications. "
+     "Dynamics 365 is named on CEP, not on the CatalogONE datasheet."),
     ("Proven results", "European operator: 9 months to 1–2 weeks. "
      "Sprint / T-Mobile: expected 50% faster TTM."),
 ]
 for i, (t, d) in enumerate(cards):
     col, row = i % 3, i // 3
-    x, y = Inches(0.6 + col * 4.1), Inches(1.5 + row * 2.65)
-    box(s, x, y, Inches(3.8), Inches(2.4), fill=LILAC)
-    box(s, x, y, Inches(3.8), Inches(0.1), fill=MS if i == 0 else (ACCENT if i == 5 else NAVY))
-    text(s, x + Inches(0.15), y + Inches(0.3), Inches(3.5), Inches(0.55), t, size=18, color=NAVY, bold=True)
-    text(s, x + Inches(0.15), y + Inches(0.9), Inches(3.5), Inches(1.35), d, size=14, color=DARK)
-notes(s, "Lead with the split the manager cares about: we keep Dynamics.")
+    x, y = Inches(0.6 + col * 4.1), Inches(1.6 + row * 2.55)
+    box(s, x, y, Inches(3.8), Inches(2.3), fill=LILAC)
+    box(s, x, y, Inches(3.8), Inches(0.1), fill=MS if i == 4 else (ACCENT if i == 5 else NAVY))
+    text(s, x + Inches(0.15), y + Inches(0.25), Inches(3.5), Inches(0.5), t, size=17, color=NAVY, bold=True)
+    text(s, x + Inches(0.15), y + Inches(0.8), Inches(3.5), Inches(1.35), d, size=13, color=DARK)
+notes(s, "Do not say CatalogONE sends data to Dynamics. Say: publishes to CRM; CEP names Dynamics.")
 
 # ------------------------------------------------------------------ 4 TMF620 lifecycle
 s = slide("PLC and the TM Forum standard in brief",
-          "TMF620 defines the statuses. CatalogONE PLM runs them. Dynamics only sees Active / Launched.")
+          "TMF620 defines the statuses. CatalogONE PLM runs them. CRM sees Active / Launched after publish.")
 stages = [("In Study", "Idea studied"), ("In Design", "Being designed"), ("In Test", "Being tested"),
           ("Active", "Ready, not yet sold"), ("Launched", "On sale"), ("Retired", "No new sales")]
 gates = ["Conception\napproved", "Design\napproved", "Test\napproved", "Start of\nmarketing", "End of\nmarketing"]
@@ -258,7 +259,7 @@ text(s, 0, 0, 0, 0, ["Rejected (test KO)"], size=13, color=WHITE, bold=True, ali
 box(s, x0 - Inches(0.1), Inches(5.45), 4 * (bw + gap) - gap + Inches(0.2), Inches(0.08), fill=NAVY)
 text(s, x0, Inches(5.6), Inches(8), Inches(0.4), "Inside CatalogONE: defined, approved and tested",
      size=14, color=NAVY, bold=True)
-text(s, x0 + 4 * (bw + gap), Inches(5.6), Inches(4.2), Inches(0.4), "Dynamics 365: visible to sales",
+text(s, x0 + 4 * (bw + gap), Inches(5.6), Inches(4.2), Inches(0.4), "Sales CRM: visible after publish",
      size=14, color=MS, bold=True)
 text(s, x0, Inches(6.2), Inches(12), Inches(0.5),
      "Amdocs is TM Forum-certified on TMF620. CatalogONE APIs use the TMF data model.",
@@ -266,7 +267,7 @@ text(s, x0, Inches(6.2), Inches(12), Inches(0.5),
 
 # ------------------------------------------------------------------ 5 modules
 s = slide("CatalogONE at a glance",
-          "Standalone telecom catalog + PLM. Modular. Does not replace Dynamics.")
+          "Standalone telecom catalog + PLM. Modular. Does not replace CRM.")
 picture(s, "09_modules_list.png", Inches(0.5), Inches(1.55), Inches(6.0), Inches(4.85),
         "Source: Amdocs, 6 Steps ebook, p.19")
 table(s, Inches(6.7), Inches(1.55), Inches(6.1), [
@@ -282,14 +283,14 @@ table(s, Inches(6.7), Inches(1.55), Inches(6.1), [
 ], [2.4, 3.7], size=13, row_h=Inches(0.52))
 
 # ------------------------------------------------------------------ 6 catalog / CRM split
-s = slide("Catalog is a module of its own. Sales is Dynamics 365.",
-          "Amdocs–Microsoft Customer Engagement Platform: unified catalog + Dynamics CRM")
+s = slide("Where Dynamics 365 is named: the Amdocs–Microsoft platform",
+          "CEP puts Catalog next to Dynamics. CatalogONE datasheets do not name Dynamics.")
 picture(s, "01_cep_architecture.png", Inches(0.5), Inches(1.5), Inches(7.6), Inches(4.7),
-        "Source: Amdocs and Microsoft CEP paper, p.3")
+        "Source: Amdocs and Microsoft CEP paper, p.3 — this is CEP, not a CatalogONE datasheet")
 for i, (t, d) in enumerate([
     ("Catalog (Amdocs)", "Product lifecycle, offerings, prices, rules. Source of truth."),
-    ("Sales (Dynamics 365)", "Quotes, orders, account managers. Consumes the catalog."),
-    ("Why it matters", "CRM is not replaced. Approved products are published into it."),
+    ("Sales / Service (Dynamics 365)", "In CEP, quotes, orders and cases sit here. CRM is not replaced."),
+    ("Live operator: PLDT", "IDC 2026: case management on CEP. Agents use Dynamics 365. Care, not a CatalogONE catalog feed."),
 ]):
     y = Inches(1.55 + i * 1.55)
     box(s, Inches(8.35), y, Inches(4.45), Inches(1.4), fill=LILAC)
@@ -384,12 +385,12 @@ s = stage_slide("Using the system (2/2): control and release it",
     ("8", "Testing & readiness", "In Test to Active", "Test team / IT", [
         "Release to sandbox",
         "Test quotes and orders",
-        "Pass: Active, ready for Dynamics",
+        "Pass: Active, ready to publish",
         "Fail: Rejected or new version"]),
 ])
 
 # ------------------------------------------------------------------ 10 approvals
-s = slide("Approval gates: nothing reaches Dynamics by accident",
+s = slide("Approval gates: nothing is published by accident",
           "Each status change is a decision, recorded with who approved it and why")
 gates = [("Gate 1", "Conception approved", "In Study to In Design", "Is the idea worth designing?",
           "Product Manager, Marketing, Finance"),
@@ -414,11 +415,11 @@ text(s, Inches(0.6), Inches(6.1), Inches(12), Inches(0.6),
      "(KT: business users manage the offering lifecycle).", size=12, color=GREY)
 
 # ------------------------------------------------------------------ 11 CRM principle
-s = slide("Dynamics consumes the approved product. It never re-creates it.",
-          "CatalogONE is the source of truth. Dynamics 365 is the sales channel.")
+s = slide("The catalog publishes. CRM consumes. Two documented facts.",
+          "CatalogONE names CRM. CEP names Dynamics 365. They are not the same sentence.")
 cat = box(s, Inches(0.55), Inches(1.85), Inches(3.5), Inches(3.7), fill=NAVY, shape=MSO_SHAPE.ROUNDED_RECTANGLE)
-text(s, 0, 0, 0, 0, ["CatalogONE", "Commerce + PLM", "", "Only Active products are published"],
-     size=16, color=WHITE, bold=True, align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE, shape=cat)
+text(s, 0, 0, 0, 0, ["CatalogONE", "Commerce + PLM", "", "Publishes Active products to consuming applications"],
+     size=15, color=WHITE, bold=True, align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE, shape=cat)
 arrow(s, Inches(4.1), Inches(3.7), Inches(5.05), Inches(3.7))
 pub = ["Offering and bundle structure", "Prices, discounts, contract terms",
        "Eligibility: channel, segment, market", "Dependencies and constraints",
@@ -431,28 +432,28 @@ for i, p in enumerate(pub):
     text(s, 0, 0, 0, 0, [p], size=13, color=DARK, anchor=MSO_ANCHOR.MIDDLE, shape=b)
 arrow(s, Inches(9.1), Inches(3.7), Inches(10.05), Inches(3.7), color=MS)
 crm = box(s, Inches(10.15), Inches(1.85), Inches(2.7), Inches(3.7), fill=MS, shape=MSO_SHAPE.ROUNDED_RECTANGLE)
-text(s, 0, 0, 0, 0, ["Dynamics 365", "Sales", "", "Quote, order and contract use the catalog definition"],
-     size=15, color=WHITE, bold=True, align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE, shape=crm)
+text(s, 0, 0, 0, 0, ["Customer's CRM", "(unnamed on CatalogONE)", "", "Dynamics 365 only where CEP is the platform"],
+     size=14, color=WHITE, bold=True, align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE, shape=crm)
 text(s, Inches(0.55), Inches(5.8), Inches(12.2), Inches(0.9),
-     "Amdocs–Microsoft CEP: \"unified Catalog, CPQ, Commerce and Order Management\" plus "
-     "\"Dynamics 365 modules focused on sales, marketing, and customer service\". "
-     "CatalogONE Centralized publishes to consuming applications.",
+     "Fact 1 — CatalogONE: \"publishing catalog information to multiple consuming applications\" and "
+     "\"integration to … the customer's CRM solution\". Fact 2 — CEP: unified Catalog plus "
+     "\"Dynamics 365 modules focused on sales, marketing, and customer service\".",
      size=13, color=GREY)
 
 # ------------------------------------------------------------------ 12 APIs
-s = slide("How the hand-over works",
+s = slide("How CatalogONE publishes — destination is CRM, not named as Dynamics",
           "Master-catalog publish + Kafka events + TM Forum Open APIs")
 table(s, Inches(0.55), Inches(1.5), Inches(12.2), [
     ["Mechanism", "Direction", "What it does"],
-    ["CatalogONE Centralized", "Catalog to Dynamics", "Author once; publish offerings, prices, rules"],
-    ["Kafka distribution", "Catalog to Dynamics", "Sync approved versions in minutes, not weeks"],
-    ["TMF620 Product Catalog", "Catalog to Dynamics", "Read catalogs, offerings, prices, specifications"],
-    ["TMF620 events", "Catalog to Dynamics", "Notify on create / change / status change"],
-    ["TMF679 Qualification", "Dynamics to catalog", "\"Can this customer get this offer here?\""],
-    ["TMF622 Product Ordering", "Dynamics to order mgmt", "Order carries offering ID and version"],
-], [3.3, 2.6, 6.3], size=13, row_h=Inches(0.5))
-steps = ["Product becomes Active", "Kafka / TMF event", "Dynamics reads TMF620",
-         "AM quotes in Sales", "Order stores offer version"]
+    ["CatalogONE Centralized", "Catalog → consuming apps", "Author once; publish offerings, prices, rules"],
+    ["Kafka distribution", "Catalog → downstream systems", "Sync approved versions in minutes, not weeks"],
+    ["TMF620 Product Catalog", "Catalog → any TMF consumer", "Read catalogs, offerings, prices, specifications"],
+    ["TMF620 events", "Catalog → subscribers", "Notify on create / change / status change"],
+    ["TMF679 Qualification", "CRM / CPQ → catalog", "\"Can this customer get this offer here?\""],
+    ["TMF622 Product Ordering", "CRM / CPQ → order mgmt", "Order carries offering ID and version"],
+], [3.3, 3.2, 5.7], size=13, row_h=Inches(0.5))
+steps = ["Product becomes Active", "Kafka / TMF event", "CRM reads TMF620",
+         "AM quotes in CRM", "Order stores offer version"]
 for i, st in enumerate(steps):
     x = Inches(0.55 + i * 2.5)
     b = box(s, x, Inches(5.55), Inches(2.25), Inches(0.95), fill=NAVY if i < 4 else MS,
@@ -464,16 +465,16 @@ for i, st in enumerate(steps):
               color=MS if i == 3 else NAVY)
 
 # ------------------------------------------------------------------ 13 complementary stack
-s = slide("What sits around the catalog",
-          "Digital Enterprise Catalog (Amdocs) and Sales management (Dynamics) on one platform")
+s = slide("What sits around the catalog — on CEP, not on a CatalogONE datasheet",
+          "Digital Enterprise Catalog (Amdocs) and Sales management (Dynamics 365) on one CEP platform")
 picture(s, "02_cep_catalog_and_crm.png", Inches(0.5), Inches(1.5), Inches(12.3), Inches(4.9),
         "Source: Amdocs and Microsoft Customer Engagement Platform paper, p.4")
 
 # ------------------------------------------------------------------ 14 version change
 s = slide("When a product changes after launch", "Versioning keeps sales and existing customers consistent")
-flow = [("1", "New version created", "In CatalogONE, not in Dynamics"),
+flow = [("1", "New version created", "In CatalogONE, not in CRM"),
         ("2", "Approval and test", "Same gates as a new product"),
-        ("3", "Event to Dynamics", "New version becomes sellable"),
+        ("3", "Event to CRM", "New version becomes sellable"),
         ("4", "New sales use v2", "Existing customers keep v1"),
         ("5", "Old version retired", "Disappears from sales screens")]
 for i, (n, t, d) in enumerate(flow):
@@ -489,30 +490,30 @@ box(s, Inches(0.6), Inches(4.45), Inches(12.1), Inches(2.15), fill=LILAC)
 text(s, Inches(0.8), Inches(4.6), Inches(11.7), Inches(1.9), [
     ("Why it works: ", "every order records the offering ID and version, so delivery and billing always "
      "match what the customer bought."),
-    ("Dynamics side: ", "new version maps to Under Revision, then Active. Retired catalog versions "
-     "are Retired in Dynamics and drop off the quote screen."),
+    ("If the CRM is Dynamics 365 [E]: ", "new version maps to Under Revision, then Active. Retired "
+     "catalog versions are Retired and drop off the quote screen."),
     ("Result: ", "a price or bundle change never breaks existing contracts."),
 ], size=15)
 
 # ------------------------------------------------------------------ 15 Dynamics mapping
-s = slide("Mapping CatalogONE onto Dynamics 365 Sales",
-          "Study, design, test and approval stay in the catalog. Dynamics receives sellable products.")
+s = slide("Example only: TMF620 items on Dynamics 365 Sales [E]",
+          "Not a vendor connector spec. Same pattern as any TMF620 catalog, if Dynamics is the CRM.")
 b = box(s, Inches(0.55), Inches(1.5), Inches(2.7), Inches(1.05), fill=NAVY, shape=MSO_SHAPE.ROUNDED_RECTANGLE)
 text(s, 0, 0, 0, 0, ["CatalogONE", "TMF620 + Kafka"], size=15, color=WHITE, bold=True,
      align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE, shape=b)
 arrow(s, Inches(3.3), Inches(2.02), Inches(4.05), Inches(2.02))
 b = box(s, Inches(4.1), Inches(1.5), Inches(2.7), Inches(1.05), fill=GREY, shape=MSO_SHAPE.ROUNDED_RECTANGLE)
-text(s, 0, 0, 0, 0, ["CEP / Dataverse", "maps and syncs"], size=15, color=WHITE, bold=True,
+text(s, 0, 0, 0, 0, ["Integration", "maps into Dataverse"], size=15, color=WHITE, bold=True,
      align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE, shape=b)
 arrow(s, Inches(6.85), Inches(2.02), Inches(7.6), Inches(2.02), color=MS)
 b = box(s, Inches(7.65), Inches(1.5), Inches(2.7), Inches(1.05), fill=MS, shape=MSO_SHAPE.ROUNDED_RECTANGLE)
 text(s, 0, 0, 0, 0, ["Dynamics 365", "product catalog"], size=15, color=WHITE, bold=True,
      align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE, shape=b)
 text(s, Inches(10.5), Inches(1.5), Inches(2.3), Inches(1.15),
-     "Pre-built in the Amdocs–Microsoft platform; not a custom CRM replacement",
+     "Pre-built Catalog+Dynamics is CEP. Not a CatalogONE AppSource connector.",
      size=12, color=GREY)
 table(s, Inches(0.55), Inches(2.85), Inches(12.2), [
-    ["CatalogONE / TMF620", "Dynamics 365 Sales entity"],
+    ["Catalog / TMF620 item", "Dynamics 365 Sales entity [M] — example [E]"],
     ["Product Offering / Bundle offering", "Product / Product bundle"],
     ["Product Catalog / Category", "Product family"],
     ["Product Offering Price / Discounts", "Price list item / Discount list"],
@@ -520,11 +521,12 @@ table(s, Inches(0.55), Inches(2.85), Inches(12.2), [
     ["Status Active / Launched / Retired", "Product status Active / Retired"],
 ], [6.1, 6.1], size=14, row_h=Inches(0.48))
 text(s, Inches(0.55), Inches(6.25), Inches(12.2), Inches(0.5),
-     "Dynamics statuses are Draft, Active, Under Revision, Retired. Everything before Active stays in CatalogONE.",
+     "Two paths: buy CEP (Catalog next to Dynamics, documented) or keep Dynamics and integrate via TMF620 / Kafka (CatalogONE pattern for any CRM).",
      size=13, color=NAVY, bold=True)
 
 # ------------------------------------------------------------------ 16 evidence
-s = slide("Evidence: results at real operators")
+s = slide("Evidence: results at real operators",
+          "CatalogONE cases first. PLDT is CEP customer care with Dynamics 365 — not a CatalogONE catalog feed.")
 for i, (op, what, res) in enumerate([
     ("European quad-play", "CatalogONE unifying siloed LoBs",
      "New offers: 9 months → 1–2 weeks. Changes in hours. 80% by configuration."),
@@ -532,31 +534,31 @@ for i, (op, what, res) in enumerate([
      "Expected 50% TTM cut. 22 channel catalogs → one. Business users define offers."),
     ("KT Corporation", "CatalogONE on KT private cloud",
      "Business-driven UI; foundation to accelerate 5G consumer and enterprise offers."),
+    ("PLDT (Philippines)", "CEP Unified Case Management — agents use Dynamics 365",
+     "IDC: 6 weeks; 48% faster L1; +27 NPS. Care, not catalog publish."),
 ]):
-    y = Inches(1.45 + i * 1.35)
-    box(s, Inches(0.55), y, Inches(7.5), Inches(1.22), fill=LILAC)
-    box(s, Inches(0.55), y, Inches(0.12), Inches(1.22), fill=ACCENT if i == 0 else NAVY)
-    text(s, Inches(0.85), y + Inches(0.08), Inches(7.05), Inches(0.35), op, size=18, color=NAVY, bold=True)
-    text(s, Inches(0.85), y + Inches(0.42), Inches(7.05), Inches(0.28), what, size=12, color=GREY)
-    text(s, Inches(0.85), y + Inches(0.72), Inches(7.05), Inches(0.42), res, size=14, color=DARK, bold=True)
-picture(s, "10_sprint_results.png", Inches(8.25), Inches(1.4), Inches(4.55), Inches(5.15),
+    y = Inches(1.5 + i * 1.22)
+    box(s, Inches(0.55), y, Inches(7.5), Inches(1.12), fill=LILAC)
+    box(s, Inches(0.55), y, Inches(0.12), Inches(1.12), fill=MS if i == 3 else (ACCENT if i == 0 else NAVY))
+    text(s, Inches(0.85), y + Inches(0.06), Inches(7.05), Inches(0.32), op, size=16, color=NAVY, bold=True)
+    text(s, Inches(0.85), y + Inches(0.36), Inches(7.05), Inches(0.26), what, size=12, color=GREY)
+    text(s, Inches(0.85), y + Inches(0.66), Inches(7.05), Inches(0.38), res, size=13, color=DARK, bold=True)
+picture(s, "10_sprint_results.png", Inches(8.25), Inches(1.5), Inches(4.55), Inches(5.0),
         "Source: TM Forum, Sprint case study")
-text(s, Inches(0.55), Inches(5.6), Inches(7.5), Inches(1.1),
-     "Mtel (A1 Bulgaria), earlier Amdocs Master Enterprise Catalog: >80% faster TTM; "
-     "complex offers idea-to-production in under three days (CTO quote).",
-     size=13, color=GREY)
 
 # ------------------------------------------------------------------ 17 close
 s = slide("Summary and references")
 bullets(s, Inches(0.55), Inches(1.4), Inches(6.7), Inches(5.3), [
     ("Idea to Active ", "inside CatalogONE: eight stages, approval gates, versions, testing."),
-    ("Active to Dynamics 365 ", "through Centralized publish, Kafka and TMF620. "
-     "The catalog stays the single source of truth."),
-    ("CRM is not replaced. ", "Sales, quotes and orders stay in Dynamics."),
-    ("Rules and prices ", "are enforced from the catalog, not re-typed."),
+    ("CatalogONE publishes ", "to consuming applications and \"the customer's CRM\" "
+     "via Centralized, Kafka and TMF620."),
+    ("Dynamics 365 is named on CEP, ", "as Sales and Customer Service next to Catalog — not on "
+     "the CatalogONE datasheet as a connector. PLDT is live on CEP care."),
+    ("Two paths: ", "buy CEP, or keep Dynamics and integrate via TMF620. CRM is not replaced."),
     ("Changes are versioned, ", "so existing customers are never affected."),
-    ("Proven ", "at a European quad-play, Sprint / T-Mobile and KT."),
-], size=16)
+    ("Proven CatalogONE ", "at a European quad-play, Sprint / T-Mobile and KT. "
+     "CEP + Dynamics 365 is live at PLDT for case management."),
+], size=15)
 refs = [
     "Amdocs CatalogONE datasheets (2025)",
     "Amdocs, 6 Steps catalog ebook (2025)",
@@ -564,6 +566,7 @@ refs = [
     "Appledore Research, CatalogONE profile (2020)",
     "Amdocs–Microsoft CEP paper and datasheet",
     "Microsoft AppSource: Customer Engagement Platform",
+    "IDC PLDT case study (CEP Unified Case Management, 2026)",
     "TM Forum Sprint / T-Mobile case study",
     "Amdocs KT CatalogONE press release (Nov 2020)",
     "TM Forum Open API conformance (Amdocs TMF620)",
